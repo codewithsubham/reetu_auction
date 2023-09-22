@@ -9,7 +9,7 @@ const NavBar = () =>
         </div>
         <div className="grid col-span-3 grid-cols-5 items-center h-100 justify-center text-center gap-0">
             <NavLink
-                to="/home"
+                to="/"
                 className={({ isActive, isPending }) =>
                     isPending ? "pending" : isActive ? "active" : ""
                 }
