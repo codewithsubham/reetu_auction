@@ -3,6 +3,7 @@ import MainScreen from "../Pages/MainScreen";
 import Home from "../Pages/Home";
 import Products from "../Pages/Products";
 import RegisterUser from "../Pages/RegisterUser";
+import Login from "../Pages/Login";
 
 
 const AppRoutes = () =>
@@ -15,6 +16,8 @@ const AppRoutes = () =>
                         <Route path="/" element={<Home />} /> {/* 👈 Renders at /app/ */}
                         <Route path="/products" element={<Products />} /> {/* 👈 Renders at /app/ */}
                         <Route path="/register" element={<RegisterUser />} />
+                        <Route path="/login" element={<Login />} />
+
                     </Route>
                     {/* <Route element={<CheckAuth />}> */}
 

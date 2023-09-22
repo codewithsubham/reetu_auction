@@ -1,4 +1,4 @@
-async function apiRequest(url, method, data = null, authToken = null)
+async function apiRequest(path, method, data = null, authToken = null)
 {
     try
     {
@@ -12,17 +12,28 @@ async function apiRequest(url, method, data = null, authToken = null)
             body: data ? JSON.stringify(data) : null,
         };
 
-        const response = await fetch(url, options);
-
+        const response = await fetch("https://api.noroff.dev" + path, options);
+        const responseData = await response.json();
         if (!response.ok)
         {
-            throw new Error(`HTTP error! status: ${response.status}`);
+            if (response.status === 400)
+            {
+                throw new Error(responseData?.errors[0].message || 'Bad Request');
+            }
+
+            if (response.status === 401)
+            {
+                throw new Error(responseData?.errors[0].message || 'Bad Request');
+            }
+
+            throw new Error(responseData.message || 'HTTP error');
         }
 
-        const responseData = await response.json();
+        console.log({ responseData })
         return responseData;
     } catch (error)
     {
+
         console.error('Error:', error);
         throw error; // Rethrow the error for handling at a higher level if needed
     }
