@@ -4,6 +4,7 @@ import Home from "../Pages/Home";
 import Products from "../Pages/Products";
 import RegisterUser from "../Pages/RegisterUser";
 import Login from "../Pages/Login";
+import Bidding from "../Pages/BIdding";
 
 
 const AppRoutes = () =>
@@ -14,10 +15,10 @@ const AppRoutes = () =>
                 <Routes>
                     <Route element={<MainScreen />}>
                         <Route path="/" element={<Home />} /> {/* 👈 Renders at /app/ */}
-                        <Route path="/products" element={<Products />} /> {/* 👈 Renders at /app/ */}
+                        <Route path="/products" element={<Products />} />
+                        <Route path="/makebid/:id" element={<Bidding />} />
                         <Route path="/register" element={<RegisterUser />} />
                         <Route path="/login" element={<Login />} />
-
                     </Route>
                     {/* <Route element={<CheckAuth />}> */}
 

@@ -37,7 +37,9 @@ const Login = () =>
         try
         {
             let response = await apiRequest("/api/v1/auction/auth/login", 'POST', data)
-            window.localStorage.setItem("accessToken", response.accessToken)
+            window.localStorage.setItem("accessToken", response.accessToken);
+            window.localStorage.setItem("credits", response.credits);
+            window.localStorage.setItem("email", response.email);
             navigate('/products', { replace: true });
         } catch (error)
         {
