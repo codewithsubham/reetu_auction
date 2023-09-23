@@ -40,6 +40,7 @@ const Login = () =>
             window.localStorage.setItem("accessToken", response.accessToken);
             window.localStorage.setItem("credits", response.credits);
             window.localStorage.setItem("email", response.email);
+            window.localStorage.setItem("name", response.name);
             navigate('/products', { replace: true });
         } catch (error)
         {
