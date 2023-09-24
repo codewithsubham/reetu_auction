@@ -23,15 +23,15 @@ let getAllBids = async (name, callback) =>
 const MyListing = () =>
 {
     let isUserLoggedIn = useStore((state) => state.isUserLoggedIn);
-    const { bids, setBids } = useStore();
+    const { myListing, setMyListing } = useStore();
     //const setBids = useStore((state) => state.setBids);
 
     useEffect(() =>
     {
-        if (bids.length != 0) return
+        if (myListing.length != 0) return
         getAllBids(window.localStorage.getItem("name"), (data) =>
         {
-            setBids(data);
+            setMyListing(data);
             console.log(data)
         })
     }, [])
@@ -45,7 +45,7 @@ const MyListing = () =>
                 <div className="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
 
                     {
-                        bids.map((bid) =>
+                        myListing.map((bid) =>
                         {
                             const targetDateTime = new Date(bid.endsAt);
                             const currentDateTime = new Date();
@@ -58,7 +58,7 @@ const MyListing = () =>
 
                             }
 
-                            return <Product loggedin={false} {...bid} key={bid.id} />
+                            return <Product loggedin={isUserLoggedIn} {...bid} key={bid.id} />
                         })
 
                     }

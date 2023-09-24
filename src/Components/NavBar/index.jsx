@@ -37,12 +37,12 @@ const NavBar = () =>
                     Add Bids
                 </NavLink>
                 <NavLink
-                    to="/about"
+                    to="/mylisting"
                     className={({ isActive, isPending }) =>
                         isPending ? "pending" : isActive ? "active" : ""
                     }
                 >
-                    About us
+                    My Listing
                 </NavLink>
                 <NavLink
                     to="/contact"

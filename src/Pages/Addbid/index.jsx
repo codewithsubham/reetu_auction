@@ -5,6 +5,7 @@ import apiFileRequest from '../../Api/fileuploadapi';
 import { data } from 'autoprefixer';
 import apiRequest from '../../Api';
 import { json, useNavigate } from 'react-router-dom';
+import useStore from '../../Store/store';
 
 export default function AddBid()
 {
@@ -14,6 +15,8 @@ export default function AddBid()
     let media = useRef(null);
     let navigate = useNavigate();
     let [loading, setLoading] = useState(false);
+    const { myListing, setMyListing } = useStore();
+
 
     let handleSubmit = async (e) =>
     {
@@ -29,8 +32,9 @@ export default function AddBid()
         try
         {
             let response = await apiRequest("/api/v1/auction/listings", "POST", data, window.localStorage.getItem("accessToken"));
-            navigate("/mylisting", { replace: false })
+            setMyListing([...myListing, response]);
             console.log({ response })
+            navigate("/mylisting", { replace: false })
         } catch (error)
         {
             window.alert(error.message);
@@ -126,9 +130,6 @@ export default function AddBid()
             </div>
 
             <div className="mt-2 flex items-center justify-end gap-x-6">
-                <button type="button" className="text-sm font-semibold leading-6 text-gray-900">
-                    Cancel
-                </button>
                 <button
                     type="submit"
                     disabled={loading}

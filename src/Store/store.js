@@ -5,9 +5,10 @@ const useStore = create((set) => ({
     setBids: (newBids) => set((state) => ({ bids: newBids })),
     isUserLoggedIn: false,
     setUserLoggedIn: (status) => set((state) => ({ isUserLoggedIn: status })),
-    bears: 0,
-    increasePopulation: () => set((state) => ({ bears: state.bears + 1 })),
-    removeAllBears: () => set({ bears: 0 }),
+    myListing: [],
+    setMyListing: (myListing) => set((state) => ({ myListing: myListing })),
+
+
 }))
 
 export default useStore;
