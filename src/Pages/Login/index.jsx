@@ -2,6 +2,7 @@ import React, { useRef, useState } from 'react'
 import apiRequest from '../../Api';
 import { Navigate, json, useNavigate } from 'react-router-dom';
 import { validateUserDataForLogin } from '../../Utils/formvalidation';
+import useStore from '../../Store/store';
 
 
 
@@ -10,6 +11,7 @@ import { validateUserDataForLogin } from '../../Utils/formvalidation';
 const Login = () =>
 {
     let [formError, setFormError] = useState({ error: false, message: "" });
+    let setUserLoggedIn = useStore((state) => state.setUserLoggedIn);
     const navigate = useNavigate();
     let [loading, setLoading] = useState(false);
     let email = useRef("");
@@ -41,6 +43,7 @@ const Login = () =>
             window.localStorage.setItem("credits", response.credits);
             window.localStorage.setItem("email", response.email);
             window.localStorage.setItem("name", response.name);
+            setUserLoggedIn(true);
             navigate('/products', { replace: true });
         } catch (error)
         {

@@ -1,4 +1,4 @@
-async function apiRequest(path, method, data = null, authToken = null)
+async function apiFileRequest(path, method, data = null, authToken = null)
 {
     try
     {
@@ -11,14 +11,11 @@ async function apiRequest(path, method, data = null, authToken = null)
 
         }
 
-        if (data)
+        Object.keys(data).forEach(key =>
         {
-            Object.keys(data).forEach(key =>
-            {
-                formData.append(key, data[key]);
-            });
+            formData.append(key, data[key]);
+        });
 
-        }
 
 
         const options = {
@@ -28,7 +25,7 @@ async function apiRequest(path, method, data = null, authToken = null)
                 Authorization: authToken ? `Bearer ${authToken}` : '',
                 // Add any additional headers here if needed
             },
-            body: data ? JSON.stringify(data) : null,
+            body: formData
         };
 
         const response = await fetch("https://api.noroff.dev" + path, options);
@@ -58,4 +55,4 @@ async function apiRequest(path, method, data = null, authToken = null)
     }
 }
 
-export default apiRequest;
+export default apiFileRequest;

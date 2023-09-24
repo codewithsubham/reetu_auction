@@ -3,14 +3,15 @@ import Product from '../../Components/Product'
 import apiRequest from '../../Api';
 import useStore from '../../Store/store';
 
-let getAllBids = async (callback) =>
+let getAllBids = async (name, callback) =>
 {
     try
     {
-        let response = await apiRequest("/api/v1/auction/listings", "GET");
+        let response = await apiRequest(`/api/v1/auction/profiles/${name}/listings`, "GET", null, window.localStorage.getItem("accessToken"));
         callback(response)
     } catch (error)
     {
+        console.log(error)
         callback([]);
     }
 
@@ -19,7 +20,7 @@ let getAllBids = async (callback) =>
 
 
 
-const Products = () =>
+const MyListing = () =>
 {
     let isUserLoggedIn = useStore((state) => state.isUserLoggedIn);
     const { bids, setBids } = useStore();
@@ -28,7 +29,7 @@ const Products = () =>
     useEffect(() =>
     {
         if (bids.length != 0) return
-        getAllBids((data) =>
+        getAllBids(window.localStorage.getItem("name"), (data) =>
         {
             setBids(data);
             console.log(data)
@@ -39,7 +40,7 @@ const Products = () =>
     return (
         <>
             <div className="mx-auto px-24 py-8">
-                <h2 className="text-2xl font-bold tracking-tight text-gray-900">Uncover Exciting Bidding Opportunities - Your Gateway to Great Deals!</h2>
+                <h2 className="text-2xl font-bold tracking-tight text-gray-900">My Listing</h2>
 
                 <div className="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
 
@@ -57,7 +58,7 @@ const Products = () =>
 
                             }
 
-                            return <Product loggedin={isUserLoggedIn} {...bid} key={bid.id} />
+                            return <Product loggedin={false} {...bid} key={bid.id} />
                         })
 
                     }
@@ -68,4 +69,4 @@ const Products = () =>
     )
 }
 
-export default Products
+export default MyListing

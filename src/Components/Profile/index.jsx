@@ -2,11 +2,14 @@ import React, { useState } from 'react'
 import { NavLink } from 'react-router-dom'
 import Credits from '../Credits';
 import Logout from '../Logout';
+import useStore from '../../Store/store';
 
 const Profile = () =>
 {
     let [visible, setVisible] = useState(false);
-    let [isUserLoggedIn,] = useState(window.localStorage.getItem("accessToken"));
+    //let [isUserLoggedIn,] = useState(window.localStorage.getItem("accessToken"));
+    let isUserLoggedIn = useStore((state) => state.isUserLoggedIn);
+
     console.log(isUserLoggedIn)
     return (
         <div className='relative' onClick={() => { setVisible(!visible) }}>

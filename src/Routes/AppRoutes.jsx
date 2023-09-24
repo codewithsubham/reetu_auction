@@ -5,6 +5,9 @@ import Products from "../Pages/Products";
 import RegisterUser from "../Pages/RegisterUser";
 import Login from "../Pages/Login";
 import Bidding from "../Pages/BIdding";
+import AddBid from "../Pages/Addbid";
+import MyListing from "../Pages/MyListing";
+import AuthRequired from "../Components/AuthRequired";
 
 
 const AppRoutes = () =>
@@ -16,9 +19,14 @@ const AppRoutes = () =>
                     <Route element={<MainScreen />}>
                         <Route path="/" element={<Home />} /> {/* 👈 Renders at /app/ */}
                         <Route path="/products" element={<Products />} />
-                        <Route path="/makebid/:id" element={<Bidding />} />
-                        <Route path="/register" element={<RegisterUser />} />
+                        <Route element={<AuthRequired />}>
+                            <Route path="/addbids" element={<AddBid />} />
+                            <Route path="/mylisting" element={<MyListing />} />
+                            <Route path="/makebid/:id" element={<Bidding />} />
+                        </Route>
                         <Route path="/login" element={<Login />} />
+                        <Route path="/register" element={<RegisterUser />} />
+
                     </Route>
                     {/* <Route element={<CheckAuth />}> */}
 
