@@ -21,8 +21,6 @@ npm install
 ### Runing in dev
 
 Follow these steps to run the project in dev mode:
-
-```bash
 npm run dev
 
 
@@ -30,5 +28,4 @@ npm run dev
 
 Follow these steps to create build:
 
-```bash
 npm run build
