@@ -16,3 +16,19 @@ Follow these steps to install the project dependencies:
 
 ```bash
 npm install
+
+
+### Runing in dev
+
+Follow these steps to run the project in dev mode:
+
+```bash
+npm run dev
+
+
+### Create production build
+
+Follow these steps to create build:
+
+```bash
+npm run build
